@@ -43,3 +43,14 @@ func PopCountShift(x uint64) int {
 	}
 	return res
 }
+
+// ex2.5 The expression x&(x-1) clears the rightmost non-zero
+// bit of x.
+func PopCountClear(x uint64) int {
+	res := 0
+	for x > 0 {
+		x &= (x - 1)
+		res++
+	}
+	return res
+}

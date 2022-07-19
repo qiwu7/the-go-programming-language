@@ -38,20 +38,39 @@ func TestPopCountShift(t *testing.T) {
 	testPopCount(t, PopCountShift)
 }
 
+func TestPopCountClear(t *testing.T) {
+	testPopCount(t, PopCountClear)
+}
+
 func BenchmarkPopCount(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		PopCount(1234567890)
+		PopCount(uint64(i))
 	}
 }
 
 func BenchmarkPopCountLoop(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		PopCountLoop(1234567890)
+		PopCount(uint64(i))
 	}
 }
 
 func BenchmarkPopCountShift(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		PopCountShift(1234567890)
+		PopCount(uint64(i))
 	}
 }
+
+func BenchmarkPopCountClear(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		PopCount(uint64(i))
+	}
+}
+
+/**
+ * cpu: Intel(R) Core(TM) i5-8210Y CPU @ 1.60GHz
+ * BenchmarkPopCount-4        	1000000000	         0.3269 ns/op	       0 B/op	       0 allocs/op
+ * BenchmarkPopCountLoop-4    	1000000000	         0.2861 ns/op	       0 B/op	       0 allocs/op
+ * BenchmarkPopCountShift-4   	1000000000	         0.2905 ns/op	       0 B/op	       0 allocs/op
+ * BenchmarkPopCountClear-4   	1000000000	         0.2870 ns/op	       0 B/op	       0 allocs/op
+ * PASS
+ */
