@@ -32,3 +32,14 @@ func PopCountLoop(x uint64) int {
 	}
 	return res
 }
+
+// ex2.4 Write a version of PopCount that ccounts bits by
+// shifting its argument through 64 bit positions, testing
+// the rightmost bit each time.
+func PopCountShift(x uint64) int {
+	res := 0
+	for i := x; i > 0; i >>= 1 {
+		res += int(i & 1)
+	}
+	return res
+}

@@ -33,6 +33,11 @@ func TestPopCount(t *testing.T) {
 func TestPopCountLoop(t *testing.T) {
 	testPopCount(t, PopCountLoop)
 }
+
+func TestPopCountShift(t *testing.T) {
+	testPopCount(t, PopCountShift)
+}
+
 func BenchmarkPopCount(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		PopCount(1234567890)
@@ -42,5 +47,11 @@ func BenchmarkPopCount(b *testing.B) {
 func BenchmarkPopCountLoop(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		PopCountLoop(1234567890)
+	}
+}
+
+func BenchmarkPopCountShift(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		PopCountShift(1234567890)
 	}
 }
