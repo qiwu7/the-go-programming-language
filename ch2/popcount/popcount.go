@@ -8,10 +8,6 @@ func init() {
 	}
 }
 
-func main() {
-	PopCount(1234567890)
-}
-
 func PopCount(x uint64) int {
 	return int(pc[byte(x>>(0*8))] +
 		pc[byte(x>>(1*8))] +
