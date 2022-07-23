@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestRotate(t *testing.T) {
+func testRotate(t *testing.T, fn func(int, []int)) {
 	tests := []struct {
 		input  []int
 		n      int
@@ -42,10 +42,18 @@ func TestRotate(t *testing.T) {
 	for _, test := range tests {
 		name := fmt.Sprintf("input: %v", test.input)
 		t.Run(name, func(t *testing.T) {
-			Rotate(test.n, test.input)
+			fn(test.n, test.input)
 			if !rev.Equal(test.input, test.output) {
 				t.Errorf("got %v, expected: %v", test.input, test.output)
 			}
 		})
 	}
+}
+
+func TestRotate(t *testing.T) {
+	testRotate(t, Rotate)
+}
+
+func TestRotate2(t *testing.T) {
+	testRotate(t, Rotate2)
 }
