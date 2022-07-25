@@ -18,6 +18,12 @@ func Findlinks2(n *html.Node) {
 	}
 }
 
+func Findlinks3(n *html.Node) {
+	for _, link := range visitAllInks(nil, n) {
+		fmt.Println(link)
+	}
+}
+
 // visit appends to links each link found in n and returns the result
 func visit(links []string, n *html.Node) []string {
 	if n.Type == html.ElementNode && n.Data == "a" {
@@ -49,6 +55,28 @@ func visitRecursively(links []string, n *html.Node) []string {
 	}
 	if n.NextSibling != nil {
 		links = visitRecursively(links, n.NextSibling)
+	}
+	return links
+}
+
+// visitAllLinks extracts other kinds of links from the document
+func visitAllInks(links []string, n *html.Node) []string {
+	if n.Type == html.ElementNode && n.Data == "a" {
+		for _, a := range n.Attr {
+			if a.Key == "href" {
+				links = append(links, a.Val)
+			}
+		}
+	}
+	if n.Type == html.ElementNode && (n.Data == "img" || n.Data == "script") {
+		for _, a := range n.Attr {
+			if a.Key == "src" {
+				links = append(links, a.Val)
+			}
+		}
+	}
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		links = visitAllInks(links, c)
 	}
 	return links
 }

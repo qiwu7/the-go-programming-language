@@ -22,7 +22,7 @@ func main() {
 	if len(os.Args) > 1 {
 		switch strings.ToLower(os.Args[1]) {
 		case "1":
-			fmt.Println("Findlinks1")
+			fmt.Println("Findlinks")
 			findlinks.Findlinks1(doc)
 		case "2":
 			fmt.Println("Outline")
@@ -30,10 +30,11 @@ func main() {
 		case "3":
 			fmt.Println("Find Elements")
 			findelements.FindElements(doc)
+		case "4":
+			fmt.Println("Find All Links (a, img, script)")
+			findlinks.Findlinks3(doc)
 		default:
 			// do nothing
 		}
-	} else {
-		// do nothing
 	}
 }
