@@ -28,6 +28,10 @@ func main() {
 			fmt.Printf("parsing %s as HTML: %v\n", url, err)
 		}
 
-		outline.Outline(doc)
+		// outline.Outline(doc)
+
+		// go run ch5/function_values/main.go https://raw.githubusercontent.com/qiwu7/the-go-programming-language/main/ch5/function_values/outline/test.html
+		node := outline.ElementByID(doc, "id1")
+		fmt.Println(node)
 	}
 }

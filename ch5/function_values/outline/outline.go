@@ -8,7 +8,6 @@ import (
 
 func Outline(n *html.Node) {
 	forEachNode(n, -1, startElement, endElement)
-
 }
 
 func forEachNode(n *html.Node, depth int, pre, post func(n *html.Node, depth int)) {
