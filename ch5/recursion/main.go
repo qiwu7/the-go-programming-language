@@ -3,9 +3,11 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"golang.org/x/net/html"
 
+	"57/the-go-programming-language/ch5/recursion/findelements"
 	"57/the-go-programming-language/ch5/recursion/findlinks"
 	"57/the-go-programming-language/ch5/recursion/outline"
 )
@@ -16,6 +18,22 @@ func main() {
 		fmt.Fprintf(os.Stderr, "findlinks1: %v\n", err)
 		os.Exit(1)
 	}
-	findlinks.Finklinks1(doc)
-	outline.Outline(nil, doc)
+
+	if len(os.Args) > 1 {
+		switch strings.ToLower(os.Args[1]) {
+		case "1":
+			fmt.Println("Findlinks1")
+			findlinks.Findlinks1(doc)
+		case "2":
+			fmt.Println("Outline")
+			outline.Outline(nil, doc)
+		case "3":
+			fmt.Println("Find Elements")
+			findelements.FindElements(doc)
+		default:
+			// do nothing
+		}
+	} else {
+		// do nothing
+	}
 }
